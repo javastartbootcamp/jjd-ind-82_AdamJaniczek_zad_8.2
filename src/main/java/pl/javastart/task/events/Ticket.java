@@ -1,5 +1,7 @@
 package pl.javastart.task.events;
 
+import java.util.Scanner;
+
 class Ticket {
     private String eventName;
     private Address address;
@@ -26,7 +28,41 @@ class Ticket {
     }
 
     public Ticket() {
+        createTicket();
+        createEventAddres();
+    }
+    
+    private void createTicket() {
+        System.out.println("Podaj nazwe wydarzenia: ");
+        Scanner scanner = new Scanner(System.in);
+        eventName = scanner.nextLine();
+        System.out.println("Podaj rodzaj biletu: ");
+        showTicketType();
+        TicketType.valueOf(scanner.nextLine().toUpperCase());
+        System.out.println("Podaj cene biletu: ");
+        basicPrice = scanner.nextDouble();
+        System.out.println("Podaj zniżkę w %: ");
+        discount = scanner.nextDouble() / 100;
+    }
 
+    private void createEventAddres() {
+        System.out.println("\nPodaj nazwe obiektu: ");
+        Scanner scanner = new Scanner(System.in);
+        address.setName(scanner.nextLine());
+        System.out.println("Podaj miasto: ");
+        address.setCity(scanner.nextLine());
+        System.out.println("Podaj nazwę ulicy: ");
+        address.setStreetName(scanner.nextLine());
+        System.out.println("Podaj numer: ");
+        address.setStreetNumber(scanner.next());
+        System.out.println("Podaj kod pocztowy: ");
+        address.setPostCode(scanner.nextLine());
+    }
+    
+    private void showTicketType() {
+        for (TicketType t : TicketType.values()) {
+            System.out.println(t);
+        }
     }
 
     public String getEventName() {
@@ -86,6 +122,7 @@ class Ticket {
                     additionalFee(),
                     finalPrice());
         }
+        System.out.println();
     }
 
     private double additionalFee() {
