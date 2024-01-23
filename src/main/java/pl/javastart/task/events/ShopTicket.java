@@ -7,6 +7,9 @@ public class ShopTicket {
         Address warszawaCosTorwar = new Address("Warszawa COS TOrwak", "Warszawa", "Łazienkowska", "6A", "00-449");
         Ticket kayahBregovic = new Ticket("Kayah i Bregowic", warszawaCosTorwar, TicketType.STANDARD, 219.45, 0.10);
         lennyKravitz.printInfo();
+        lennyKravitz.showTicketNamber();
+        kayahBregovic.printInfo();
+        kayahBregovic.showTicketNamber();
         Ticket nowyBilet = new Ticket();
         nowyBilet.printInfo();
     }

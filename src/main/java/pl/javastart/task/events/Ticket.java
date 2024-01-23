@@ -3,19 +3,21 @@ package pl.javastart.task.events;
 import java.util.Scanner;
 
 class Ticket {
+    private static int id;
     private String eventName;
     private Address address;
     private TicketType ticketType;
     private double basicPrice;
     private double discount;
-    private static int ticketNumber = 1;
+    private int ticketNumber;
 
     public Ticket(String eventName, Address address, TicketType ticketType, double basicPrice) {
         this.eventName = eventName;
         this.address = address;
         this.ticketType = ticketType;
         this.basicPrice = basicPrice;
-        ticketNumber++;
+        ticketNumber = id + 1;
+        id++;
     }
 
     public Ticket(String eventName, Address address, TicketType ticketType, double basicPrice, double discount) {
@@ -24,12 +26,15 @@ class Ticket {
         this.ticketType = ticketType;
         this.basicPrice = basicPrice;
         this.discount = discount;
-        ticketNumber++;
+        ticketNumber = id + 1;
+        id++;
     }
 
     public Ticket() {
         createTicket();
         createEventAddres();
+        ticketNumber = id + 1;
+        id++;
     }
     
     private void createTicket() {
@@ -58,7 +63,7 @@ class Ticket {
         System.out.println("Podaj kod pocztowy: ");
         address.setPostCode(scanner.nextLine());
     }
-    
+
     private void showTicketType() {
         for (TicketType t : TicketType.values()) {
             System.out.println(t);
@@ -85,7 +90,7 @@ class Ticket {
         return discount;
     }
 
-    public static int getTicketNumber() {
+    public int getTicketNumber() {
         return ticketNumber;
     }
 
@@ -140,5 +145,9 @@ class Ticket {
 
     private double discontPrice() {
         return basicPrice - (basicPrice * discount);
+    }
+
+    public void showTicketNamber() {
+        System.out.println("Numer biletu: " + ticketNumber);
     }
 }
